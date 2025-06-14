@@ -199,3 +199,10 @@ elif menu == "Prediksi Manual":
         pred_class = best_rf.predict(input_scaled)[0]
         pred_label = le_target.inverse_transform([pred_class])[0]
         st.success(f"✅ Hasil Prediksi: **{pred_label}**")
+
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 8080))
+    # Jalankan Streamlit lewat CLI dari dalam Python
+    os.system(f"streamlit run app.py --server.port {port} --server.address 0.0.0.0")
+
