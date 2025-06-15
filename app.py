@@ -68,7 +68,6 @@ if X is not None and y is not None and not X.empty and not y.empty:
     try:
         smote = SMOTE(random_state=42)
         X_res, y_res = smote.fit_resample(X, y)
-        st.write("✅ SMOTE berhasil dilakukan.")
     except Exception as e:
         st.error(f"❌ Gagal melakukan SMOTE: {str(e)}")
         X_res, y_res = X, y
@@ -199,10 +198,3 @@ elif menu == "Prediksi Manual":
         pred_class = best_rf.predict(input_scaled)[0]
         pred_label = le_target.inverse_transform([pred_class])[0]
         st.success(f"✅ Hasil Prediksi: **{pred_label}**")
-
-if __name__ == "__main__":
-    import os
-    port = int(os.environ.get("PORT", 8080))
-    # Jalankan Streamlit lewat CLI dari dalam Python
-    os.system(f"streamlit run app.py --server.port {port} --server.address 0.0.0.0")
-
